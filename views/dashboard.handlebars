@@ -1,0 +1,37 @@
+<div class="mb-4">
+  <h1>Hi {{user.dataValues.userName}}</h1>
+</div>
+
+<div class="mb-4">
+  <a href="/api/post" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">New Post</a>
+</div>
+
+{{!-- add for Each handlebars if exist--}}
+<div class="mainPosts">
+
+  {{#each post}}
+  <div class="card">
+    <div class="card-header">
+      {{this.dataValues.title}}
+    </div>
+    <div class="card-body">
+      <blockquote class="blockquote mb-0">
+        <p>{{this.dataValues.content}}</p>
+        <footer class="blockquote-footer">{{this.dataValues.date_created}} {{this.dataValues.user_userName}}
+
+        </footer>
+      </blockquote>
+
+      <a href="#" class="btn btn-secondary">Add comments</a>
+      <a href="/api/edit/{{this.dataValues.id}}" class="btn btn-secondary">Edit</a>
+      {{!-- delete --}}
+      <form action="/api/{{this.dataValues.id}}?_method=DELETE" method="POST" class="d-inline">
+        <button type="submit" class="btn btn-outline-primary">Delete</button>
+      </form>
+    </div>
+  </div>
+
+  {{else}}
+  <h2>There is no post</h2>
+  {{/each}}
+</div>

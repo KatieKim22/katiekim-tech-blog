@@ -1,0 +1,10 @@
+<div class="card">
+    <div class="card-header">
+        Create a New Post
+    </div>
+
+    <form action="/api/post" method="POST">
+        {{!-- render partial view of form-field handlebars --}}
+        {{>_form_fields}}
+    </form>
+</div>

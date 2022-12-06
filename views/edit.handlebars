@@ -1,0 +1,10 @@
+<div class="card">
+    <div class="card-header">
+        Edit the Post
+    </div>
+
+    <form action="/api/post/{{post.id}}?_method=PUT" method="POST">
+        {{!-- render partial view of form-field handlebars --}}
+        {{>_form_fields}}
+    </form>
+</div>
