@@ -6,12 +6,12 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', async (req, res) => {
-    let { id, text, user_id } = req.body;
+    let { text, user_id } = req.body;
     try {
         let newComment = await Comment.create({
             text: text,
             date_created: date_created,
-            user_id: user_id
+            user_id: req.session.user_id
         })
         res.redirect('/')
     } catch (err) {

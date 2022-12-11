@@ -4,7 +4,7 @@ const bcrypt = require("bcrypt");
 const { RuleTester } = require('eslint');
 // assign variables with models
 const { User, Post } = require('../../models');
-
+const withAuth = require('../../utils/auth')
 
 router.get('/', async (req, res) => {
     res.render("log_in")
@@ -46,6 +46,7 @@ router.post('/', async (req, res) => {
         res.status(400).json(err);
     }
 });
+
 
 
 

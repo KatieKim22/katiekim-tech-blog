@@ -9,15 +9,31 @@ router.get('/', async (req, res) => {
     res.render('home', { post: posts })
 })
 
-
-
-// after login, dashboard
-router.get('/:id', withAuth, async (req, res) => {
-    const userData = await User.findOne({ where: { id: req.params.id } });
-    const posts = await Post.findAll(
-        { where: { user_id: req.params.id }, limit: 10, order: [['date_created', 'DESC']] })
-    res.render('dashboard', { user: userData, post: posts })
+// after login, redirect to dashboard
+router.get('/:id', async (req, res) => {
+    console.log('logged in')
+    try {
+        let dashboard = await User.findOne({
+            where: { id: req.session.user_id },
+            attributes: [
+                'id',
+                'userName'
+            ],
+            include: [
+                {
+                    model: Post,
+                    attributes: ['title', 'content', 'date_created']
+                }
+            ]
+        })
+        res.render('dashboard', { dashboard })
+    } catch (err) {
+        console.log(err)
+        res.status(500).json({ message: err.message })
+    }
 })
+
+
 
 
 

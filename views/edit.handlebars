@@ -3,8 +3,18 @@
         Edit the Post
     </div>
 
-    <form action="/api/post/{{post.id}}?_method=PUT" method="POST">
+    <form action="/api/post/edit/{{post.dataValues.id}}?_method=PUT" method="POST">
         {{!-- render partial view of form-field handlebars --}}
-        {{>_form_fields}}
+        <div class="form-group">
+            <label for="title" id="title" name="title">Title</label>
+            <input type="text" class="form-control" id="title" name="title" placeholder="Title of your content">
+
+        </div>
+        <div class="form-group">
+            <label for="content">Content</label>
+            <textarea required name="content" id="content" cols="30" rows="10" class="form-control d-inline"></textarea>
+        </div>
+        <a href="/" class="btn btn-secondary">Cancel</a>
+        <button type="submit" class="btn btn-primary" class="d-inline">Update</button>
     </form>
 </div>

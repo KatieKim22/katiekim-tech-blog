@@ -1,5 +1,5 @@
 <div class="mb-4">
-  <h1>Hi {{user.dataValues.userName}}</h1>
+  <h1>Hi {{dashboard.dataValues.userName}}</h1>
 </div>
 
 <div class="mb-4">
@@ -23,7 +23,8 @@
       </blockquote>
 
       <a href="#" class="btn btn-secondary">Add comments</a>
-      <a href="/api/edit/{{this.dataValues.id}}" class="btn btn-secondary">Edit</a>
+      {{!-- <a href="/api/edit/{{this.dataValues.id}}" class="btn btn-secondary">Edit</a> --}}
+
       {{!-- delete --}}
       <form action="/api/{{this.dataValues.id}}?_method=DELETE" method="POST" class="d-inline">
         <button type="submit" class="btn btn-outline-primary">Delete</button>

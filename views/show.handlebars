@@ -20,11 +20,11 @@
 
 {{!-- if user === user.session --}}
 <div class="row ">
-    <form action="/api/post/{{post.id}}" method="GET">
+    <form action="/api/post/edit/{{post.dataValues.id}}" method="GET">
         <button type="submit" class="btn btn-outline-primary m-1">Edit</button>
     </form>
     {{!-- template for method override --}}
-    <form action="/api/{{post.id}}" method="DELETE" class="d-inline">
+    <form action="/api/post/{{post.dataValues.id}}?_method=DELETE" method="POST" class="d-inline">
         <button type="submit" class="btn btn-outline-primary m-1">Delete</button>
     </form>
     <form action="/" method="">
@@ -32,16 +32,17 @@
     </form>
 </div>
 {{!-- comment box --}}
-<div class="input-group mb-3">
-    <span class="input-group-text">Add a new comment</span>
-    <input type="text" class="form-control" placeholder="Add your comment" aria-label="comment"
-        aria-describedby="button-addon2">
-    <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Submit</button>
-</div>
-
+<form action="/api/comment" method="POST">
+    <div class="input-group mb-3">
+        <span class="input-group-text">Add a new comment</span>
+        <input type="text" class="form-control" placeholder="Add your comment" aria-label="comment"
+            aria-describedby="button-addon2">
+        <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Submit</button>
+    </div>
+</form>
 {{!-- previous comments --}}
 
-<form action="/api/post/{{post.id}}" method="GET">
+<form action="/api/comment/{{comment.id}}" method="GET">
     <div class="card">
         <div class="card-body">
             {{comment.dataValues.text}}
