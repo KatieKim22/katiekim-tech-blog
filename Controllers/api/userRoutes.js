@@ -1,7 +1,7 @@
 // user routes - for login, log-out, register
 const router = require('express').Router();
 const bcrypt = require("bcrypt");
-// const { RuleTester } = require('eslint');
+
 // assign variables with models
 const { User, Post } = require('../../models');
 const withAuth = require('../../utils/auth')
@@ -38,7 +38,7 @@ router.post('/', async (req, res) => {
                 // change directory, redirect to dashboard
                 console.log('userID: ', userData.id)
 
-                res.redirect(`/${userData.id}`)
+                return res.redirect(`/${userData.id}`)
             });
         }
     }

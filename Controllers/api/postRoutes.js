@@ -18,14 +18,14 @@ router.post('/', async (req, res) => {
             user_id: req.session.user_id
 
         })
-
+        createNewPost.save()
         // redirect to dashboard with new post below
-        res.redirect('/')
+        return res.redirect('/')
     }
     catch (err) {
         console.log(err)
         // res.status(400).json({ message: err.message })
-        res.render('/')
+        return res.render('home')
     }
 })
 
@@ -51,10 +51,10 @@ router.get('/:id', async (req, res) => {
             ]
         })
         // add new post handlebars
-        res.render('show', { post: newPost })
+        return res.render('show', { post: newPost })
     } catch (err) {
         console.log(err)
-        res.status(400).json({ message: err.message })
+        return res.status(400).json({ message: err.message })
     }
 })
 
@@ -67,13 +67,12 @@ router.get('/edit/:id', async (req, res) => {
 // update the post /title, content, date_created, user_id/
 router.put('/edit/:id', async (req, res) => {
     console.log('postID', req.params.id)
-    let { title, content, date_created, user_id } = req.body;
+    let { title, content, date_created } = req.body;
     try {
         let updateNewPost = await Post.update({
             title: title,
             content: content,
-            date_created: date_created,
-            user_id: user_id
+            date_created: date_created
         }, {
             where: {
                 id: req.params.id
@@ -81,12 +80,12 @@ router.put('/edit/:id', async (req, res) => {
         })
         // res.status(200).json(updateNewPost)
         // redirect to dashboard with new post below
-        res.redirect('/')
+        return res.redirect('/')
     }
     catch (err) {
         console.log(err)
         res.status(400).json({ message: err.message })
-        res.render('/')
+        return res.render('/')
     }
 })
 

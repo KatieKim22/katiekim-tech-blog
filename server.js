@@ -12,7 +12,7 @@ const exphbs = require('express-handlebars');
 const hbs = exphbs.create({});
 
 const sequelize = require('./config/connection');
-const exp = require('constants');
+// const exp = require('constants');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const app = express();
