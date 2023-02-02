@@ -50,13 +50,11 @@ router.post('/', async (req, res) => {
 
 
 
-router.post('/logout', (req, res) => {
+router.get('/logout', (req, res) => {
     try {
         if (req.session.logged_in) {
-            req.session.destroy(() => {
-                res.redirect('home')
-            }
-            )
+            req.session.destroy()
+            res.render("log_in")
         } else {
             res.status(404).end()
         }
